@@ -4,6 +4,7 @@
 import requests
 from requests.auth import HTTPDigestAuth
 from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 import json
 import csv
 from time import sleep
@@ -34,11 +35,11 @@ def main():
     while i < len(results):
         stockname = results[i][0]
         # Replace with the correct URL
-        url = "https://api.tiingo.com/tiingo/daily/"+stockname+"/prices?endDate="+ endDate +"&startDate=" +startDate +"&token=820fb8ecbdf96305753989c1b0a31df690a97950"
+        url = "https://api.tiingo.com/tiingo/daily/"+stockname+"/prices?endDate="+ endDate +"&startDate=" +startDate +"&token="
         urls.append(url)
         i = i + 1
 
-    pool = ThreadPoolExecutor(25)
+    pool = ProcessPoolExecutor(25)
 
     print("Sending Requests")
     z = 1
